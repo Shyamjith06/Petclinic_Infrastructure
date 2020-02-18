@@ -1,6 +1,6 @@
 node {
    stage('Git-Checkout for Teraform') {
-   git 'https://github.com/Shyamjith06/Terraform-1.git'
+   git 'https://github.com/Shyamjith06/Petclinic_Infrastructure.git'
   }
 
  def project_terraform="Terraform"
@@ -10,4 +10,10 @@ node {
    sh label: 'terraform', script: '/bin/terraform  apply -input=false -auto-approve'
    }
   }
- }
+ stage('Production - Provisioning Approval') {
+  	input "Start provisioning the production server?"
+  }
+  stage('Downstream Build -- Docker Deployment'){
+	 build 'Petclinic_ProductionServer'
+	}
+}
