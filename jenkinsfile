@@ -13,7 +13,7 @@ node {
  stage('Production - Provisioning Approval') {
   	input "Start provisioning the production server?"
   }
-  stage('Downstream Build -- Docker Deployment'){
+  stage('Downstream Build -- Production Deployment'){
 	 build 'Petclinic_ProductionServer'
 	}
 }
